@@ -1,0 +1,130 @@
+@import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;600&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Shadows+Into+Light&display=swap");
+* {
+  font-family: "Space Grotesk";
+}
+
+body {
+  background-color: rgb(34, 34, 34);
+}
+
+#root {
+  margin: 1%;
+  display: grid;
+  grid-template-rows: 40px 100px 1fr;
+  min-height: 100vh;
+}
+
+.nav-main {
+  justify-self: center;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10%;
+  color: white;
+}
+.nav-main h2 {
+  color: rgb(255, 82, 2);
+  font-size: 1.5rem;
+  letter-spacing: 2px;
+  text-align: center;
+  font-family: "Shadows Into Light";
+}
+.nav-main .modes {
+  display: flex;
+  width: 40%;
+  justify-content: right;
+  gap: 20px;
+}
+.nav-main .modes button {
+  font-family: "Space Grotesk";
+  color: white;
+  padding: 5px;
+  font-size: 1.1rem;
+  background-color: inherit;
+  border: none;
+  outline: none;
+  cursor: pointer;
+}
+.nav-main .modes button:hover {
+  border-bottom: 3px solid rgb(255, 82, 2);
+}
+.nav-main .modes button:active {
+  background-color: rgb(255, 82, 2);
+}
+
+.nav-filtered {
+  grid-row: 2/3;
+  width: 90%;
+  justify-self: center;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: left;
+}
+.nav-filtered h2 {
+  font-size: 3rem;
+}
+.nav-filtered .genres {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+}
+.nav-filtered .genres p {
+  cursor: pointer;
+}
+.nav-filtered .genres p:hover {
+  color: rgb(255, 82, 2);
+}
+
+.loading {
+  grid-row: 3/4;
+  justify-self: center;
+  align-self: center;
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+  text-align: center;
+  font-size: 1.3rem;
+}
+.loading p span {
+  font-weight: bold;
+}
+
+.filtered {
+  grid-row: 3/4;
+  padding: 20px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+  justify-items: center;
+  row-gap: 20px;
+  height: 100%;
+}
+
+.card {
+  width: 90%;
+  height: 350px;
+  gap: 10px;
+  position: relative;
+}
+.card img {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  border-radius: 10px;
+  border: 3px solid black;
+}
+.card .info {
+  background-color: rgba(0, 0, 0, 0.8);
+  border-radius: 10px;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  position: absolute;
+  padding-left: 5px;
+  height: 100%;
+  z-index: 10;
+}/*# sourceMappingURL=App.css.map */
