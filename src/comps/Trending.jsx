@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Card from './Card';
-import NavRandom from './navs/Nav-Random';
+import NavTrending from './navbarComps/LowerNavTrending';
 
-class Random extends Component {
+class Trending extends Component {
     state = {  } 
     render() { 
         const data = this.props.movieData;
@@ -12,7 +12,7 @@ class Random extends Component {
         });
         return (
             <>
-                < NavRandom />
+                < NavTrending />
                 <div className="filtered">
                     {data.map((movie)=>{
                         return <Card 
@@ -37,4 +37,4 @@ function mapState(state){
     }
   }
  
-export default connect(mapState)(Random);
+export default connect(mapState)(Trending);

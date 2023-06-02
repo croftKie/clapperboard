@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Card from './Card';
-import NavFiltered from './navs/Nav-Filtered';
 
 class Filtered extends Component {
     state = {  } 
@@ -12,7 +11,6 @@ class Filtered extends Component {
         });
         return (
             <>
-                < NavFiltered />
                 <div className="filtered">
                     {data.map((movie)=>{
                         return <Card 

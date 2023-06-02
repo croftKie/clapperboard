@@ -483,9 +483,10 @@ export const initialState = {
         }
       ],
     filters : {
-      
+      sort_by : 'popularity.desc'
     },
     fetchUrls : {
-      baseUrl : 'https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=en-US'
+      baseUrl : 'https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=en-US',
+      trendingUrl : 'https://api.themoviedb.org/3/trending/movie/week?language=en-US'
     }
 }

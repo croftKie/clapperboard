@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { data } from '../test-data';
+import expandImg from '../assets/expand.png';
 
 
 
@@ -10,8 +11,8 @@ class Info extends Component {
         return (
             <div className="info">
                 <h3>{title}</h3>
+                <img src={expandImg} alt="" />
                 <p>{overview}</p>
-                <p>{averageVote}/10</p>
             </div>
         );
     }

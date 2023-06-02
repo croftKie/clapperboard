@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Card from './Card';
-import NavMood from './navs/Nav-Mood';
+import NavMood from './navbarComps/LowerNavMood';
 
 class Mood extends Component {
     state = {  } 

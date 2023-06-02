@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import axios from 'axios';
 import './css/App.css'
 
-import NavMain from './comps/Nav-main';
-import Loading from './comps/Loading';
+import UpperNavbar from './comps/navbarComps/UpperNavbar';
+import MiddleNav from './comps/navbarComps/MiddleNav';
+import LowerNavSort from './comps/navbarComps/LowerNavSort';
+
 import Filtered from './comps/Filtered';
-import Random from './comps/Random';
+import Trending from './comps/Trending';
 import Mood from './comps/Mood';
 import { fetchMovieData } from './utils/fetch';
 
@@ -23,10 +24,13 @@ class App extends Component {
 
     return (
       <>
-        <NavMain />
+        <UpperNavbar />
+        <MiddleNav />
+        <LowerNavSort />
         {this.props.mode === "filter" ? <Filtered /> : 
-          this.props.mode === "random" ? <Random /> : 
-          this.props.mode === "mood" ? <Mood /> : <Filtered />}
+          this.props.mode === "trending" ? <Trending /> : 
+          this.props.mode === "mood" ? <Mood /> : 
+          <Filtered />}
       </>
     );
   }

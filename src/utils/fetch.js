@@ -1,5 +1,5 @@
 import axios from "axios"
-export const fetchMovieData = async (url)=>{
+export const fetchMovieData = async (url, mode)=>{
     const options = {
         method: 'GET',
         headers: {
@@ -8,6 +8,18 @@ export const fetchMovieData = async (url)=>{
         }
     }
 
+    if (mode = 'trending'){
+      const {data} = await axios.get(url,options);
+      return data;
+    }
     const {data} = await axios.get(url,options);
     return data;
+}
+
+export const generateFetchUrl = (filters, baseUrl)=>{
+  const expandedUrl = [baseUrl];
+  for (const key in filters) {
+    expandedUrl.push(`${key}=${filters[key]}`);
+  }
+  return expandedUrl.join("&");
 }
