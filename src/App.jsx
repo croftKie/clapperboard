@@ -5,32 +5,60 @@ import './css/App.css'
 import UpperNavbar from './comps/navbarComps/UpperNavbar';
 import MiddleNav from './comps/navbarComps/MiddleNav';
 import LowerNavSort from './comps/navbarComps/LowerNavSort';
+import NavMood from './comps/navbarComps/LowerNavMood';
+import NavTrending from './comps/navbarComps/MiddleNavTrending';
 
-import Filtered from './comps/Filtered';
-import Trending from './comps/Trending';
-import Mood from './comps/Mood';
-import { fetchMovieData } from './utils/fetch';
+import Filtered from './comps/ContentComps/Content';
+import Movie from './comps/movieComps/Movie';
 
-const url = 'https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=en-US';
 
 class App extends Component {
 
-  async componentDidMount(){
-    const data = await fetchMovieData('https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=en-US');
-  }
-
-
   render() { 
+    const {mode, selectedMovie} = this.props;
+
+    const navModeSelector = ()=>{
+      switch (mode) {
+        case 'filter':
+          this.props.dispatch({type: 'selectedMovieId', payload: ""});
+          this.props.dispatch({type: 'selectedMovie', payload: ""});
+          this.props.dispatch({type: 'mode', payload: ""});
+          return (
+            <>
+              <UpperNavbar />
+              <MiddleNav />
+              <LowerNavSort />
+            </>
+          )
+        case 'trending':
+          return (
+            <>
+              <UpperNavbar />
+              <NavTrending />
+            </>
+          )
+        case 'mood':
+          return (
+            <>
+              <UpperNavbar />
+              <NavMood />
+            </>
+          )
+        default:
+          return (
+            <>
+              <UpperNavbar />
+              <MiddleNav />
+              <LowerNavSort />
+            </>
+          )
+      }
+    } 
 
     return (
       <>
-        <UpperNavbar />
-        <MiddleNav />
-        <LowerNavSort />
-        {this.props.mode === "filter" ? <Filtered /> : 
-          this.props.mode === "trending" ? <Trending /> : 
-          this.props.mode === "mood" ? <Mood /> : 
-          <Filtered />}
+        {navModeSelector()}
+        {selectedMovie !== "" ? <Movie /> : <Filtered />}
       </>
     );
   }

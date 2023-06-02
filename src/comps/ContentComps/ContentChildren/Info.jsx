@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import { data } from '../test-data';
-import expandImg from '../assets/expand.png';
+import expandImg from '../../../assets/expand.png';
 
 
 

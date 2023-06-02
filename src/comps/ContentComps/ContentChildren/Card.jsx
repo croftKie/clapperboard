@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
-import { data } from '../test-data';
+import { data } from '../../../test-data';
 import Info from './Info';
 
 class Card extends Component {
     state = { show : false } 
 
     render() { 
-        const {title, overview, averageVote, posterPath} = this.props;
+        const {title, overview, averageVote, posterPath, id, getMovieId} = this.props;
 
         const toggleTextOnHover = () => {
             if (this.state.show) { 
@@ -20,11 +20,9 @@ class Card extends Component {
                     <Info 
                         title={title} 
                         overview={overview} 
-                        averageVote={averageVote} 
                     /> : <></>;
-
         return (
-            <div onMouseEnter={toggleTextOnHover} onMouseLeave={toggleTextOnHover} className="card">
+            <div onClick={()=>{getMovieId(id)}} onMouseEnter={toggleTextOnHover} onMouseLeave={toggleTextOnHover} className="card">
                 <img src={`https://image.tmdb.org/t/p/w1280/${posterPath}`} alt="" />
                 {text}
             </div>
