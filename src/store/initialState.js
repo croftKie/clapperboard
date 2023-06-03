@@ -482,9 +482,6 @@ export const initialState = {
           "name": "Western"
         }
       ],
-    filters : {
-      sort_by : 'popularity.desc'
-    },
     fetchUrls : {
       baseUrl : 'https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=en-US',
       trendingUrl : 'https://api.themoviedb.org/3/trending/movie/week?language=en-US',
@@ -492,5 +489,7 @@ export const initialState = {
       searchActor : 'https://api.themoviedb.org/3/search/person?include_adult=false&language=en-US'
     },
     mode : '',
-    selectedMovie : ''
+    selectedMovie : '',
+    sort_by : '',
+    with_genre : ''
 }

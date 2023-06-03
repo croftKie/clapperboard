@@ -21,8 +21,8 @@ class SortButtons extends Component {
         return (
             <div className='sortItem'>
                 <p className={!this.state.clicked ? 'noClick' : 'click'} 
-                                onClick={(event)=>{
-                                onSort(event, id);
+                                onClick={()=>{
+                                onSort(id);
                                 changeClass();
                                 sortTextToggle();
                                 }}>{text}</p>

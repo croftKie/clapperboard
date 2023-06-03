@@ -5,14 +5,14 @@ import { fetchMovieData } from '../../../utils/fetch';
 class UpperNavMenu extends Component {
     state = {  } 
     render() { 
-        const {fetchUrls, mode} = this.props;
+        const {fetchUrls} = this.props;
         const setMode = (mode)=>{
             this.props.dispatch({type:'mode', payload:mode})
         }
 
         const setTrending = async ()=>{
-            const data = await fetchMovieData(fetchUrls.trendingUrl, mode);
-            this.props.dispatch({type: "movieData", payload: data.results})
+            const data = await fetchMovieData(fetchUrls.trendingUrl);
+            this.props.dispatch({type: "movie_data", payload: data.results})
         }
 
         const resetSelectedMovie = ()=>{

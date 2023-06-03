@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 class ListItem extends Component {
     state = { clicked : false } 
     render() { 
-        const {onGenreFilter, genre} = this.props;
+        const {onGenreFilter, fetchFilteredData, genre} = this.props;
 
         const changeClass = ()=>{
             this.state.clicked = !this.state.clicked;
@@ -12,8 +12,7 @@ class ListItem extends Component {
         return (<>
             <p 
                 className={!this.state.clicked ? 'noClick' : 'click'} 
-                onClick={(event)=>{onGenreFilter(event); changeClass()}} 
-                data-value={genre.id}
+                onClick={(event)=>{onGenreFilter(genre.id); changeClass(); fetchFilteredData(genre.id)}} 
             >{genre.name}</p>
         </>);
 

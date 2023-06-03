@@ -1,5 +1,7 @@
 import axios from "axios"
-export const fetchMovieData = async (url, mode)=>{
+let AscDescToggle = true;
+
+export const fetchMovieData = async (url)=>{
     const options = {
         method: 'GET',
         headers: {
@@ -7,20 +9,24 @@ export const fetchMovieData = async (url, mode)=>{
           Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJjNmEyNjQ2NDgzZTY0OGQ5YzVmZDkxNDU1YzQxNjQ2ZSIsInN1YiI6IjY0Nzg3ODViY2Y0YjhiMDBlMmQ0NzBmMCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.ZCDSPFM_yodRWtdfxjd7nRN3iaxoLu7dVi397aFCukE'
         }
     }
-
-    if (mode = 'trending'){
-      const {data} = await axios.get(url,options);
-      return data;
-    }
     const {data} = await axios.get(url,options);
     return data;
 }
 
-export const generateFetchUrl = (filters, baseUrl)=>{
+export const generateFilterUrl = (baseUrl, genreFilter, sortFilter)=>{
   const expandedUrl = [baseUrl];
-  for (const key in filters) {
-    expandedUrl.push(`${key}=${filters[key]}`);
-  }
+  if (genreFilter !== "") {
+    expandedUrl.push(`with_genres=${genreFilter}`);
+  };
+  if (sortFilter) {
+    if(AscDescToggle){
+      expandedUrl.push(`sort_by=${sortFilter}.asc`);
+      AscDescToggle = !AscDescToggle;
+    } else {
+        expandedUrl.push(`sort_by=${sortFilter}.desc`);
+        AscDescToggle = !AscDescToggle;
+    };
+  };
   return expandedUrl.join("&");
 }
 
@@ -28,3 +34,4 @@ export const generateSearchUrl = (search, searchUrlBase)=>{
   const expandedUrl = `${searchUrlBase}&query=${search}`
   return expandedUrl;
 }
+

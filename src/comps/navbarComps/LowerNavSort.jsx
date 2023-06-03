@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import SortButtons from './lower-nav-children/SortButtons';
-import { fetchMovieData, generateFetchUrl, generateSearchUrl} from '../../utils/fetch';
+import { fetchMovieData, generateFilterUrl, generateSearchUrl} from '../../utils/fetch';
 import { connect } from 'react-redux';
 
 class LowerNavSort extends Component {
@@ -14,20 +14,12 @@ class LowerNavSort extends Component {
     }
     render() { 
         const {sortModes} = this.state;
-        const {filters, fetchUrls} = this.props;
-        const onSort = async (event, type) => {
-            if(sortModes[type]){
-                this.props.dispatch({type:'filters', payload: {sort_by : `${type}.desc`}});
-                sortModes[type] = !sortModes[type];
-            } else {
-                this.props.dispatch({type:'filters', payload: {sort_by : `${type}.asc`}});
-                sortModes[type] = !sortModes[type];
-            }
+        const {with_genre, fetchUrls} = this.props;
 
-            const url = generateFetchUrl(filters, fetchUrls.baseUrl)
-            
+        const onSort = async (type) => {
+            const url = generateFilterUrl(fetchUrls.baseUrl, with_genre, type)
             const data = await fetchMovieData(url);
-            this.props.dispatch({type: 'movieData', payload : data.results});
+            this.props.dispatch({type: 'movie_data', payload : data.results});
         }
 
         const onSearch = async (event, typeOfSearch)=>{
