@@ -23,3 +23,8 @@ export const generateFetchUrl = (filters, baseUrl)=>{
   }
   return expandedUrl.join("&");
 }
+
+export const generateSearchUrl = (search, searchUrlBase)=>{
+  const expandedUrl = `${searchUrlBase}&query=${search}`
+  return expandedUrl;
+}

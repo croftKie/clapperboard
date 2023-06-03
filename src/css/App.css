@@ -111,8 +111,19 @@ body {
   gap: 5%;
   cursor: pointer;
 }
-.sort-by .sorts p {
+.sort-by .sorts .sortItem {
+  width: 20%;
+  display: flex;
+  align-items: center;
+  gap: 10%;
+}
+.sort-by .sorts .sortItem p {
   color: white;
+}
+.sort-by .sorts .sortItem img {
+  justify-self: left;
+  height: 30px;
+  filter: invert(100%);
 }
 .sort-by .sorts .click {
   border-bottom: 3px solid rgb(255, 82, 2);

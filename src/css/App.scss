@@ -106,12 +106,23 @@ body{
     align-content: center;
     color: #a0a0a0;
     .sorts{
-        p{
-            color: white;
-        }
         display: flex;
         justify-content: left;
         gap: 5%;
+        .sortItem{
+            width: 20%;
+            display: flex;
+            align-items: center;
+            gap: 10%;
+            p{
+                color: white;
+            }
+            img{
+                justify-self: left;
+                height: 30px;
+                filter: invert(100%);
+            }
+        }
         cursor: pointer;
         .click{
             border-bottom: 3px solid rgb(255, 82, 2);
