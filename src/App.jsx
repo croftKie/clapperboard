@@ -57,7 +57,7 @@ class App extends Component {
 
     return (
       <>
-        {navModeSelector()}
+        {selectedMovie!== "" ? <UpperNavbar /> : navModeSelector()}
         {selectedMovie !== "" ? <Movie /> : <Filtered />}
       </>
     );

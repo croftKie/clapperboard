@@ -14,11 +14,15 @@ class UpperNavMenu extends Component {
             const data = await fetchMovieData(fetchUrls.trendingUrl, mode);
             this.props.dispatch({type: "movieData", payload: data.results})
         }
+
+        const resetSelectedMovie = ()=>{
+            this.props.dispatch({type:'selectedMovie', payload: ""});
+        }
         return (
         <div className="modes">
-            <button onClick={()=>{setMode("filter")}}>Find a Movie</button>
-            <button onClick={()=>{setMode("trending"); setTrending()}}>Trending</button>
-            <button onClick={()=>{setMode("mood")}}>Movies by Mood</button>
+            <button onClick={()=>{setMode("filter"); resetSelectedMovie()}}>Find a Movie</button>
+            <button onClick={()=>{setMode("trending"); resetSelectedMovie(); setTrending()}}>Trending</button>
+            <button onClick={()=>{setMode("mood"); resetSelectedMovie()}}>Movies by Mood</button>
         </div>
         );
     }
