@@ -2,6 +2,7 @@ import axios from "axios"
 let AscDescToggle = true;
 
 export const fetchMovieData = async (url)=>{
+  console.log(url);
     const options = {
         method: 'GET',
         headers: {
@@ -10,6 +11,7 @@ export const fetchMovieData = async (url)=>{
         }
     }
     const {data} = await axios.get(url,options);
+    console.log(data);
     return data;
 }
 
@@ -35,3 +37,6 @@ export const generateSearchUrl = (search, searchUrlBase)=>{
   return expandedUrl;
 }
 
+export const loadNextPage = () =>{
+
+}

@@ -12,22 +12,46 @@ import { fetchMovieData } from './utils/fetch';
 
 
 class App extends Component {
+  state = {
+    currentPage : 1
+  }
+
 
   async componentDidMount(){
     const data = await fetchMovieData(this.props.fetchUrls.trendingUrl);
+    this.props.dispatch({type: 'current_url', payload : this.props.fetchUrls.trendingUrl});
     this.props.dispatch({type: 'movie_data', payload : data.results});
   }
+
+
 
   render() { 
     const {mode, selectedMovie} = this.props;
 
+    const nextPageLoadData = async()=>{
+      const data = await fetchMovieData(this.props.current_url + `&page=${this.state.currentPage + 1}`);
+      this.props.dispatch({type: 'movie_data', payload : data.results});
+      window.scrollTo({top: 0, behavior: 'smooth'});
+    }
+    const prevPageLoadData = async()=>{
+      const data = await fetchMovieData(this.props.current_url + `&page=${this.state.currentPage - 1}`);
+      this.props.dispatch({type: 'movie_data', payload : data.results});
+      window.scrollTo({top: 0, behavior: 'smooth'});
+    }
 
     return (
       <>
         <UpperNavbar />
         <MiddleNav />
         <LowerNavSort />
-        {selectedMovie !== "" ? <Movie /> : <Filtered />}
+        {selectedMovie !== "" ? <Movie /> : 
+          <>
+            <Filtered />
+            <div className="pagination">
+              <button onClick={prevPageLoadData}>Previous Page</button>
+              <button onClick={nextPageLoadData}>Next Page</button>
+            </div>
+          </>}
       </>
     );
   }

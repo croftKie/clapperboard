@@ -5,11 +5,7 @@ class Loading extends Component {
     render() { 
         return (
             <div className="loading">
-                <h1>Loading The Movie Database...</h1>
-                <hr />
-                <p><span>Filter Mode:</span> Find movies based on genre, era, actor or crew.</p>
-                <p><span>Random Mode:</span> Let us pick some random movies for you to watch.</p>
-                <p><span>Mood Mode:</span> Tell us your mood and we'll find you a perfect set of movies.</p>
+                <button>Load More</button>
             </div>
         );
     }

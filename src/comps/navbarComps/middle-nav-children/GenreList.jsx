@@ -14,11 +14,13 @@ class GenreList extends Component {
         const fetchFilteredData = async (genreId)=>{
             const url = generateFilterUrl(fetchUrls.baseUrl, genreId, sort_by);
             const data = await fetchMovieData(url);
+            this.props.dispatch({type: 'current_url', payload : url});
             this.props.dispatch({type: 'movie_data', payload : data.results});
         } 
 
         const fetchTrendingData = async()=>{
             const data = await fetchMovieData(this.props.fetchUrls.trendingUrl);
+            this.props.dispatch({type: 'current_url', payload : url});
             this.props.dispatch({type: 'movie_data', payload : data.results});
         }
 

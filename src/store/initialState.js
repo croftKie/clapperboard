@@ -491,5 +491,6 @@ export const initialState = {
     mode : '',
     selectedMovie : '',
     sort_by : '',
-    with_genre : ''
+    with_genre : '',
+    current_url : ''
 }

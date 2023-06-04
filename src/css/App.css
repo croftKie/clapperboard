@@ -17,7 +17,7 @@ body {
 #root {
   margin: 1%;
   display: grid;
-  grid-template-rows: 40px 200px 50px 1fr;
+  grid-template-rows: 60px min-content 70px max-content 50px;
   min-height: 100vh;
 }
 
@@ -32,12 +32,12 @@ body {
   gap: 15px;
 }
 .nav-main img {
-  height: 50px;
+  height: min(5vw, 50px);
   filter: invert(100%);
 }
 .nav-main h2 {
   color: white;
-  font-size: 3rem;
+  font-size: min(5vw, 3rem);
   letter-spacing: 2px;
   text-align: center;
   font-family: "Geologica";
@@ -52,9 +52,10 @@ body {
   flex-direction: column;
   justify-content: space-around;
   align-items: left;
+  margin-bottom: 30px;
 }
 .nav-filtered h2 {
-  font-size: 3rem;
+  font-size: min(5vw, 3rem);
 }
 .nav-filtered p {
   color: grey;
@@ -84,29 +85,34 @@ body {
   width: 90%;
   justify-self: center;
   grid-row: 3/4;
-  display: grid;
-  grid-template-columns: 90px 4fr 1fr 2fr;
-  align-content: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 30px;
   color: #a0a0a0;
 }
 .sort-by .sorts {
   display: flex;
-  justify-content: left;
+  flex-wrap: wrap;
   gap: 5%;
+  justify-content: center;
   cursor: pointer;
 }
 .sort-by .sorts .sortItem {
-  width: 20%;
+  width: 120px;
   display: flex;
   align-items: center;
-  gap: 10%;
+  gap: 5%;
+  flex: 1;
 }
 .sort-by .sorts .sortItem p {
   color: white;
+  font-size: 0.9rem;
 }
 .sort-by .sorts .sortItem img {
   justify-self: left;
-  height: 30px;
+  height: 20px;
   filter: invert(100%);
 }
 .sort-by .sorts .click {
@@ -129,30 +135,54 @@ body {
   caret-color: rgb(255, 82, 2);
 }
 
-.loading {
-  grid-row: 3/4;
-  justify-self: center;
-  align-self: center;
-  display: flex;
-  flex-direction: column;
-  gap: 50px;
-  text-align: center;
-  font-size: 1.3rem;
-}
-.loading p span {
-  font-weight: bold;
-}
-
 .filtered {
   margin-top: 20px;
+  margin-bottom: 100px;
   justify-self: center;
   grid-row: 4/5;
   width: 90%;
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1%;
   justify-items: center;
-  row-gap: 30px;
+}
+.filtered .card {
+  flex: 1 0 250px;
+  width: 80%;
+  height: 350px;
+  gap: 10px;
+  position: relative;
+  cursor: pointer;
+}
+.filtered .card img {
+  width: 100%;
   height: 100%;
+  position: absolute;
+  border-radius: 10px;
+  border: 3px solid black;
+}
+.filtered .card .info {
+  position: absolute;
+  background-color: rgba(0, 0, 0, 0.8);
+  border-radius: 10px;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  height: 100%;
+  z-index: 10;
+  text-align: center;
+}
+.filtered .card .info img {
+  border: none;
+  height: 40px;
+  width: 40px;
+  filter: invert(100%);
+}
+.filtered .card .info p {
+  padding-left: 5px;
+  padding-right: 5px;
 }
 
 .movie {
@@ -180,62 +210,4 @@ body {
 .movie .movieInfo {
   display: flex;
   gap: 5%;
-}
-
-@media screen and (max-width: 1400px) {
-  .filtered {
-    grid-template-columns: 1fr 1fr 1fr 1fr;
-  }
-}
-@media screen and (max-width: 1000px) {
-  .filtered {
-    grid-template-columns: 1fr 1fr 1fr;
-  }
-}
-@media screen and (max-width: 800px) {
-  .filtered {
-    grid-template-columns: 1fr 1fr;
-  }
-}
-@media screen and (max-width: 500px) {
-  .filtered {
-    grid-template-columns: 1fr;
-  }
-}
-.card {
-  width: 80%;
-  height: 350px;
-  gap: 10px;
-  position: relative;
-  cursor: pointer;
-}
-.card img {
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  border-radius: 10px;
-  border: 3px solid black;
-}
-.card .info {
-  position: absolute;
-  background-color: rgba(0, 0, 0, 0.8);
-  border-radius: 10px;
-  color: white;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  align-items: center;
-  height: 100%;
-  z-index: 10;
-  text-align: center;
-}
-.card .info img {
-  border: none;
-  height: 40px;
-  width: 40px;
-  filter: invert(100%);
-}
-.card .info p {
-  padding-left: 5px;
-  padding-right: 5px;
 }/*# sourceMappingURL=App.css.map */
