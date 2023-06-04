@@ -1,15 +1,14 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import UpperNavMenu from './upper-nav-children/UpperNavMenu';
-import UpperNavLogo from './upper-nav-children/UpperNavLogo';
+import video from '../../assets/video.png';
 
 class UpperNavbar extends Component {
     render() { 
 
         return (
             <div className="nav-main">
-                <UpperNavLogo />
-                <UpperNavMenu />
+                <img src={video} alt="" />
+                <h2>Clapperboard</h2>
             </div>
         );
     }

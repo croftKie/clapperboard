@@ -17,6 +17,11 @@ class GenreList extends Component {
             this.props.dispatch({type: 'movie_data', payload : data.results});
         } 
 
+        const fetchTrendingData = async()=>{
+            const data = await fetchMovieData(this.props.fetchUrls.trendingUrl);
+            this.props.dispatch({type: 'movie_data', payload : data.results});
+        }
+
         const resetClicked = (event)=>{
             event.currentTarget.childNodes.forEach((child)=>{
                 child.className = 'noClick';
@@ -24,6 +29,7 @@ class GenreList extends Component {
         }
         return (
         <div onClick={resetClicked} className="genres">
+            <p className='trending' onClick={fetchTrendingData}>Trending</p>
             {genres.map( (genre) => <ListItem key={genre.id} onGenreFilter={setGenre} fetchFilteredData={fetchFilteredData} genre={genre}/>)}
         </div>
         );

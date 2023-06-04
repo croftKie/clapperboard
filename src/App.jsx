@@ -5,59 +5,28 @@ import './css/App.css'
 import UpperNavbar from './comps/navbarComps/UpperNavbar';
 import MiddleNav from './comps/navbarComps/MiddleNav';
 import LowerNavSort from './comps/navbarComps/LowerNavSort';
-import NavMood from './comps/navbarComps/LowerNavMood';
-import NavTrending from './comps/navbarComps/MiddleNavTrending';
 
 import Filtered from './comps/ContentComps/Content';
 import Movie from './comps/movieComps/Movie';
+import { fetchMovieData } from './utils/fetch';
 
 
 class App extends Component {
 
+  async componentDidMount(){
+    const data = await fetchMovieData(this.props.fetchUrls.trendingUrl);
+    this.props.dispatch({type: 'movie_data', payload : data.results});
+  }
+
   render() { 
     const {mode, selectedMovie} = this.props;
 
-    const navModeSelector = ()=>{
-      switch (mode) {
-        case 'filter':
-          this.props.dispatch({type: 'selectedMovieId', payload: ""});
-          this.props.dispatch({type: 'selectedMovie', payload: ""});
-          this.props.dispatch({type: 'mode', payload: ""});
-          return (
-            <>
-              <UpperNavbar />
-              <MiddleNav />
-              <LowerNavSort />
-            </>
-          )
-        case 'trending':
-          return (
-            <>
-              <UpperNavbar />
-              <NavTrending />
-            </>
-          )
-        case 'mood':
-          return (
-            <>
-              <UpperNavbar />
-              <NavMood />
-            </>
-          )
-        default:
-          return (
-            <>
-              <UpperNavbar />
-              <MiddleNav />
-              <LowerNavSort />
-            </>
-          )
-      }
-    } 
 
     return (
       <>
-        {selectedMovie!== "" ? <UpperNavbar /> : navModeSelector()}
+        <UpperNavbar />
+        <MiddleNav />
+        <LowerNavSort />
         {selectedMovie !== "" ? <Movie /> : <Filtered />}
       </>
     );
