@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import './css/App.css'
+import next from './assets/next.png';
+import previous from './assets/previous.png';
 
 import UpperNavbar from './comps/navbarComps/UpperNavbar';
 import MiddleNav from './comps/navbarComps/MiddleNav';
@@ -30,26 +32,32 @@ class App extends Component {
 
     const nextPageLoadData = async()=>{
       const data = await fetchMovieData(this.props.current_url + `&page=${this.state.currentPage + 1}`);
+      this.setState({currentPage : this.state.currentPage + 1});
       this.props.dispatch({type: 'movie_data', payload : data.results});
       window.scrollTo({top: 0, behavior: 'smooth'});
     }
     const prevPageLoadData = async()=>{
       const data = await fetchMovieData(this.props.current_url + `&page=${this.state.currentPage - 1}`);
+      this.setState({currentPage : this.state.currentPage + 1});
       this.props.dispatch({type: 'movie_data', payload : data.results});
       window.scrollTo({top: 0, behavior: 'smooth'});
     }
 
     return (
       <>
-        <UpperNavbar />
-        <MiddleNav />
-        <LowerNavSort />
-        {selectedMovie !== "" ? <Movie /> : 
+        {selectedMovie !== "" ? 
           <>
+            <UpperNavbar />
+            <Movie />
+          </> : 
+          <>
+            <UpperNavbar />
+            <MiddleNav />
+            <LowerNavSort />
             <Filtered />
             <div className="pagination">
-              <button onClick={prevPageLoadData}>Previous Page</button>
-              <button onClick={nextPageLoadData}>Next Page</button>
+              <button onClick={prevPageLoadData}><img src={previous} alt="" /></button>
+              <button onClick={nextPageLoadData}><img src={next} alt="" /></button>
             </div>
           </>}
       </>

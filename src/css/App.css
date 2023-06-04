@@ -17,7 +17,7 @@ body {
 #root {
   margin: 1%;
   display: grid;
-  grid-template-rows: 60px min-content 70px max-content 50px;
+  grid-template-rows: 60px min-content 70px max-content 100px;
   min-height: 100vh;
 }
 
@@ -27,12 +27,12 @@ body {
   width: 90%;
   display: flex;
   align-items: center;
-  justify-content: right;
+  justify-content: end;
   color: white;
   gap: 15px;
 }
 .nav-main img {
-  height: min(5vw, 50px);
+  height: min(5vw, 45px);
   filter: invert(100%);
 }
 .nav-main h2 {
@@ -183,6 +183,24 @@ body {
 .filtered .card .info p {
   padding-left: 5px;
   padding-right: 5px;
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  gap: 50px;
+}
+.pagination button {
+  color: white;
+  background-color: inherit;
+  font-size: 2rem;
+  border: none;
+  outline: none;
+  cursor: pointer;
+}
+.pagination button img {
+  height: 50px;
+  filter: invert(100%);
 }
 
 .movie {
